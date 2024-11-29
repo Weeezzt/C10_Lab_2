@@ -61,6 +61,5 @@ import java.net.URI;
             problemDetails.setTitle("Internal Server Error");
             return problemDetails;
         }
-
     }
 

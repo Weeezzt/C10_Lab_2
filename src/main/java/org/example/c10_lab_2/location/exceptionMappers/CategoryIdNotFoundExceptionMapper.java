@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.NOT_FOUND)
 public class CategoryIdNotFoundExceptionMapper extends RuntimeException {
-
     public CategoryIdNotFoundExceptionMapper(int id) {
         super("Category with id " + id + " not found");
     }

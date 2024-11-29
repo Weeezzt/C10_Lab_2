@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Optional;
 
-
 public interface LocationRepository extends ListCrudRepository<Location, Integer> {
     Optional<Location>  findByName(String name);
 

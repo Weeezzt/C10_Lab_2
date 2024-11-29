@@ -1,5 +1,7 @@
 package org.example.c10_lab_2.location.dto;
 
+import lombok.Getter;
+
 public class LocationRequest {
 
     private float longitude;

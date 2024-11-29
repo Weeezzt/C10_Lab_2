@@ -13,20 +13,17 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    //works without exception handling
     public List<CategoryDto> getAllCategories() {
         return categoryRepository.findAll().stream()
                 .map(CategoryDto::fromCategory)
                 .toList();
     }
 
-    //works with exception handling
     public CategoryDto getCategoryByName(String name) {
         Category category = categoryRepository.findByName(name);
         return CategoryDto.fromCategory(category);
     }
 
-    //works with exception handling
     public int addCategory(CategoryDto categoryDto) {
         if (categoryRepository.existsByName(categoryDto.name())) {
             throw new IllegalArgumentException("Category with name " + categoryDto.name() + " already exists");

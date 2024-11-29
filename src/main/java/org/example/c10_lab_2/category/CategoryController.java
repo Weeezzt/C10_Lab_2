@@ -16,24 +16,20 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    //works but no exception handling
     @GetMapping("/categories")
     public List<CategoryDto> getAllCategories() {
         return categoryService.getAllCategories();
     }
 
-    //works with exception handling
     @GetMapping("/categories/{name}")
     public CategoryDto getCategoryByName(@PathVariable String name) {
         try {
             return categoryService.getCategoryByName(name);
-
         }catch (Exception e){
             throw new CategoryNotFoundExceptionMapper(name);
         }
     }
 
-    //works with exception handling
     @PostMapping("/categories")
     public ResponseEntity<Void> createCategory(@RequestBody CategoryDto categoryDto) {
 

@@ -25,7 +25,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.server.ResponseStatusException;
 
-
 @Slf4j
 @Service
 public class LocationService {
@@ -63,9 +62,6 @@ public class LocationService {
             throw new LocationNotFoundExceptionMapper(id);
         }
         return location;
-
-
-
     }
 
     @Retryable(maxAttempts = 2)
@@ -81,10 +77,8 @@ public class LocationService {
         return address.displayName();
     }
 
-    //Works with exception handling
     @Transactional
     public int addLocation(LocationDto locationDto){
-
         Location location = new Location();
         location.setName(locationDto.name());
         location.setDescription(locationDto.description());
@@ -110,7 +104,6 @@ public class LocationService {
         return location.getId();
     }
 
-    //work without exception handling
     public List<LocationDto> getPublicLocationByCategory(String category){
         List<LocationDto> locations =  locationRepository.findAll().stream()
                 .filter(location -> location.getStatus() == LocationStatus.PUBLIC && location.getCategory().getName().equals(category) )
@@ -123,7 +116,6 @@ public class LocationService {
         return locations;
     }
 
-    //works with exception handling
     public List<LocationDto> getAllLocationsByUser(int userId) {
         List<Location> locations = locationRepository.findByUserId(userId);
         if (locations.isEmpty())
@@ -135,7 +127,6 @@ public class LocationService {
                     .toList();
     }
 
-   //works with exception handling
     public LocationDto updateLocation(int id, LocationDto locationDto) {
             Location location = locationRepository.findById(id)
                     .orElseThrow(() -> new LocationNotFoundExceptionMapper(id));
@@ -157,7 +148,6 @@ public class LocationService {
             return LocationDto.fromLocation(updatedLocation);
     }
 
-    //works with exception handling
     public List<LocationDto> getLocationsInRadius(float lon, float lat, double radius) {
 
         if (lat < -90 || lat > 90 || lon < -180 || lon > 180) {

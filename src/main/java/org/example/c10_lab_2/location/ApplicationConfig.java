@@ -7,7 +7,6 @@ import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.web.client.RestClient;
 import org.springframework.cache.annotation.EnableCaching;
 
-
 @Configuration
 @EnableRetry
 @EnableCaching

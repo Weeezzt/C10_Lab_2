@@ -34,22 +34,21 @@ public class LocationControllerTest {
 
     @Test
     @WithAnonymousUser
-    public void testGetAllLocations() throws Exception {
+    public void testGetAllPublicLocations() throws Exception {
         mockMvc.perform(get("/locations"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
 
     @Test
-    @WithMockUser(username = "user", roles = "USER")
-    public void testGetUsersLocations() throws Exception {
+    @WithMockUser(username = "user", roles = "user")
+    public void testGetUsersLocationsIfAuthenticated() throws Exception {
         mockMvc.perform(get("/locations/user/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
 
     @Test
-    @WithMockUser(username = "admin", roles = "ADMIN")
     public void testGetLocationById() throws Exception {
         when(locationService.getLocationsById(1)).thenReturn(List.of(
                 new LocationDto("Test Location", "PUBLIC", "Description", null, 1, 1)

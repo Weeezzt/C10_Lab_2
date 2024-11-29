@@ -9,5 +9,4 @@ class C10Laboration2ApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }
